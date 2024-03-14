@@ -81,34 +81,15 @@ The stages in a lifecycle of a proposal are as follows:
 - Review
 - Accepted
 - Living
+- ValidatorAwareness
+- CommunityVote
+- ReviseEconomics
+- Implemented
+- FeatureGated
+- TestnetRelease
+- MainnetRelease
 - Stagnant
 - Withdrawn
-- Implemented
-
-```mermaid
-flowchart LR
-  Idea
-  Draft
-  Review
-  Accepted
-
-  subgraph fail[&nbsp];
-    Stagnant
-    Withdrawn
-  end
-
-  style fail fill:#ffe8e7,stroke:none
-  style Accepted fill:#f3f8dc,stroke:#c3db50;
-
-  Idea ---> Draft;
-  Draft ---> Review;
-  Review ---> Accepted;
-  Review ---> Living;
-
-  Draft ---> Stagnant;
-  Review ---> Stagnant;
-  Review ---> Withdrawn;
-```
 
 ```mermaid
 flowchart TD
