@@ -81,15 +81,17 @@ The stages in a lifecycle of a proposal are as follows:
 - Review
 - Accepted
 - Living
-- ValidatorAwareness
 - CommunityVote
 - ReviseEconomics
 - Implemented
+- Stagnant
+- Withdrawn
+<!---
 - FeatureGated
 - TestnetRelease
 - MainnetRelease
-- Stagnant
-- Withdrawn
+- ValidatorAwareness
+--->
 
 ```mermaid
 flowchart LR 
@@ -101,10 +103,12 @@ flowchart LR
   Implemented
   CommunityVote
   ReviseEconomics
-  ValidatorAwareness
+<!---
   FeatureGated
   TestnetRelease
   MainnetRelease
+  ValidatorAwareness
+--->
   
   subgraph fail[&nbsp];
     Stagnant
@@ -122,11 +126,13 @@ flowchart LR
   style Implemented fill: lightyellow
   style Idea fill: lightyellow
   style Review fill: lightyellow
+  style Draft fill: lightyellow
+  style Accepted fill:#f3f8dc,stroke:#c3db50;
+<!---
   style TestnetRelease fill: lightyellow
   style MainnetRelease fill: lightyellow
-  style Draft fill: lightyellow
   style ValidatorAwareness fill:lightblue
-  style Accepted fill:#f3f8dc,stroke:#c3db50;
+--->
 
   Idea ---> Draft;
   Draft ---> Review;
@@ -136,16 +142,21 @@ flowchart LR
   Draft ---> Stagnant;
   Review ---> Stagnant;
   Review ---> Withdrawn;
+<!---
   Accepted ---> ValidatorAwareness ---> EconomicImpact?
+--->
+  Accepted ---> EconomicImpact?
   EconomicImpact?{Economic Impact?} -- No --> Implemented 
   EconomicImpact? -- Yes --> CommunityVote((Community Vote))
   CommunityVote -- Pass --> Implemented 
   CommunityVote -- No Pass --> ReviseEconomics(Revise Economics)
   ReviseEconomics -- Revised --> CommunityVote
   ReviseEconomics ---> Withdrawn
+<!---
   Implemented ---> FeatureGated
   FeatureGated ---> TestnetRelease
   TestnetRelease ---> MainnetRelease
+--->
 ```  
   
 ### Idea
@@ -206,9 +217,11 @@ reach a state of finality. This includes most notably SIMD-1. This status must
 undergo extra scrutiny and review when updating the status from review to
 living.
 
+<!---
 ### ValidatorAwareness
 
 Raise awareness among validators for visibility and early feedback
+--->
 
 ### CommunityVote
 
@@ -220,8 +233,9 @@ Revise economics based on the community vote results and feedback
 
 ### Implemented
 
-Implement the SIMD by validator software implementors 
+Implement the SIMD by validator software implementors. Social consensus outside of the simd process must be met in order to go from Accepted to Implemented stage.
 
+<!---
 ### FeatureGated
 
 Queue up behind feature gates per release schedule
@@ -233,24 +247,15 @@ Released on Solana testnet
 ### MainnetRelease
 
 Released on Solana mainnet 
+--->
 
 ### Stagnant
 
-If a proposal reaches 6 months without activity, the proposal will be
-marked as stale to be closed. A new proposal can be opened if the proposal is
+If a proposal reaches 6 months without activity, the proposal will be marked as stale to be closed. A new proposal can be opened if the proposal is
 closed and has a chance of reaching consensus.
 
 ### Withdrawn
 
 The author has withdrawn the proposal. This state has finality and can no
-longer be resurrected. If the idea is pursued at a later date it is considered
-a new proposal.
-
-
- 
- 
- 
- 
- 
- 
+longer be resurrected. If the idea is pursued at a later date it is considered a new proposal.
   
