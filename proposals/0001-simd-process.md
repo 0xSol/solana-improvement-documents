@@ -92,7 +92,7 @@ The stages in a lifecycle of a proposal are as follows:
 - Withdrawn
 
 ```mermaid
-flowchart TD
+flowchart LR 
   Idea
   Draft
   Review
@@ -136,7 +136,8 @@ flowchart TD
   Draft ---> Stagnant;
   Review ---> Stagnant;
   Review ---> Withdrawn;
-  Accepted ---> ValidatorAwareness ---> EconomicImpact?{Economic Impact?} -- No --> Implemented 
+  Accepted ---> ValidatorAwareness ---> EconomicImpact?
+  EconomicImpact?{Economic Impact?} -- No --> Implemented 
   EconomicImpact? -- Yes --> CommunityVote((Community Vote))
   CommunityVote -- Pass --> Implemented 
   CommunityVote -- No Pass --> ReviseEconomics(Revise Economics)
