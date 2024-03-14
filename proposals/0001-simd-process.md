@@ -86,12 +86,6 @@ The stages in a lifecycle of a proposal are as follows:
 - Implemented
 - Stagnant
 - Withdrawn
-<!---
-- FeatureGated
-- TestnetRelease
-- MainnetRelease
-- ValidatorAwareness
---->
 
 ```mermaid
 flowchart LR 
@@ -103,12 +97,6 @@ flowchart LR
   Implemented
   CommunityVote
   ReviseEconomics
-<!---
-  FeatureGated
-  TestnetRelease
-  MainnetRelease
-  ValidatorAwareness
---->
   
   subgraph fail[&nbsp];
     Stagnant
@@ -128,11 +116,6 @@ flowchart LR
   style Review fill: lightyellow
   style Draft fill: lightyellow
   style Accepted fill:#f3f8dc,stroke:#c3db50;
-<!---
-  style TestnetRelease fill: lightyellow
-  style MainnetRelease fill: lightyellow
-  style ValidatorAwareness fill:lightblue
---->
 
   Idea ---> Draft;
   Draft ---> Review;
@@ -142,9 +125,6 @@ flowchart LR
   Draft ---> Stagnant;
   Review ---> Stagnant;
   Review ---> Withdrawn;
-<!---
-  Accepted ---> ValidatorAwareness ---> EconomicImpact?
---->
   Accepted ---> EconomicImpact?
   EconomicImpact?{Economic Impact?} -- No --> Implemented 
   EconomicImpact? -- Yes --> CommunityVote((Community Vote))
@@ -152,11 +132,6 @@ flowchart LR
   CommunityVote -- No Pass --> ReviseEconomics(Revise Economics)
   ReviseEconomics -- Revised --> CommunityVote
   ReviseEconomics ---> Withdrawn
-<!---
-  Implemented ---> FeatureGated
-  FeatureGated ---> TestnetRelease
-  TestnetRelease ---> MainnetRelease
---->
 ```  
   
 ### Idea
@@ -217,12 +192,6 @@ reach a state of finality. This includes most notably SIMD-1. This status must
 undergo extra scrutiny and review when updating the status from review to
 living.
 
-<!---
-### ValidatorAwareness
-
-Raise awareness among validators for visibility and early feedback
---->
-
 ### CommunityVote
 
 Submit to Solana community to vote on SIMDs with significant economic impact
@@ -234,20 +203,6 @@ Revise economics based on the community vote results and feedback
 ### Implemented
 
 Implement the SIMD by validator software implementors. Social consensus outside of the simd process must be met in order to go from Accepted to Implemented stage.
-
-<!---
-### FeatureGated
-
-Queue up behind feature gates per release schedule
-
-### TestnetRelease
-
-Released on Solana testnet
- 
-### MainnetRelease
-
-Released on Solana mainnet 
---->
 
 ### Stagnant
 
