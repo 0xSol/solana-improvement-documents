@@ -7,6 +7,7 @@ category: Meta
 type: Meta
 status: Living
 created: 2022-10-18
+revised: 2024-03-14
 ---
 
 ## What is a Proposal?
@@ -109,6 +110,62 @@ flowchart LR
   Review ---> Withdrawn;
 ```
 
+```mermaid
+flowchart TD
+  Idea
+  Draft
+  Review
+  Accepted
+  EconomicImpact?
+  Implemented
+  CommunityVote
+  ReviseEconomics
+  ValidatorAwareness
+  FeatureGated
+  TestnetRelease
+  MainnetRelease
+  
+  subgraph fail[&nbsp];
+    Stagnant
+    Withdrawn
+  end
+
+  subgraph economics[&nbsp];
+	EconomicImpact?
+    CommunityVote
+    ReviseEconomics
+  end
+  
+  style fail fill:#ffe8e7,stroke:none
+  style CommunityVote fill: lightgreen
+  style Implemented fill: lightyellow
+  style Idea fill: lightyellow
+  style Review fill: lightyellow
+  style TestnetRelease fill: lightyellow
+  style MainnetRelease fill: lightyellow
+  style Draft fill: lightyellow
+  style ValidatorAwareness fill:lightblue
+  style Accepted fill:#f3f8dc,stroke:#c3db50;
+
+  Idea ---> Draft;
+  Draft ---> Review;
+  Review ---> Accepted;
+  Review ---> Living;
+
+  Draft ---> Stagnant;
+  Review ---> Stagnant;
+  Review ---> Withdrawn;
+  Accepted ---> ValidatorAwareness ---> EconomicImpact?{Economic Impact?} -- No --> Implemented 
+  EconomicImpact? -- Yes --> CommunityVote((Community Vote))
+  CommunityVote -- Pass --> Implemented 
+  CommunityVote -- No Pass --> ReviseEconomics(Revise Economics)
+  ReviseEconomics -- Revised --> CommunityVote
+  ReviseEconomics ---> Withdrawn
+  Implemented ---> FeatureGated
+  FeatureGated ---> TestnetRelease
+  TestnetRelease ---> MainnetRelease
+```  
+  
 ### Idea
 
 At the idea stage, parties involved in the proposal are you -- the champion or
@@ -167,6 +224,34 @@ reach a state of finality. This includes most notably SIMD-1. This status must
 undergo extra scrutiny and review when updating the status from review to
 living.
 
+### ValidatorAwareness
+
+Raise awareness among validators for visibility and early feedback
+
+### CommunityVote
+
+Submit to Solana community to vote on SIMDs with significant economic impact
+
+### ReviseEconomics
+
+Revise economics based on the community vote results and feedback
+
+### Implemented
+
+Implement the SIMD by validator software implementors 
+
+### FeatureGated
+
+Queue up behind feature gates per release schedule
+
+### TestnetRelease
+
+Released on Solana testnet
+ 
+### MainnetRelease
+
+Released on Solana mainnet 
+
 ### Stagnant
 
 If a proposal reaches 6 months without activity, the proposal will be
@@ -179,3 +264,11 @@ The author has withdrawn the proposal. This state has finality and can no
 longer be resurrected. If the idea is pursued at a later date it is considered
 a new proposal.
 
+
+ 
+ 
+ 
+ 
+ 
+ 
+  
