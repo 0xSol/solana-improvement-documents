@@ -7,7 +7,6 @@ category: Meta
 type: Meta
 status: Living
 created: 2022-10-18
-revised: 2024-03-14
 ---
 
 ## What is a Proposal?
@@ -81,40 +80,23 @@ The stages in a lifecycle of a proposal are as follows:
 - Review
 - Accepted
 - Living
-- CommunityVote
-- ReviseEconomics
-- Implemented
 - Stagnant
 - Withdrawn
+- Implemented
 
 ```mermaid
-flowchart LR 
+flowchart LR
   Idea
   Draft
   Review
   Accepted
-  EconomicImpact?
-  Implemented
-  CommunityVote
-  ReviseEconomics
-  
+
   subgraph fail[&nbsp];
     Stagnant
     Withdrawn
   end
 
-  subgraph economics[&nbsp];
-	EconomicImpact?
-    CommunityVote
-    ReviseEconomics
-  end
-  
   style fail fill:#ffe8e7,stroke:none
-  style CommunityVote fill: lightgreen
-  style Implemented fill: lightyellow
-  style Idea fill: lightyellow
-  style Review fill: lightyellow
-  style Draft fill: lightyellow
   style Accepted fill:#f3f8dc,stroke:#c3db50;
 
   Idea ---> Draft;
@@ -125,15 +107,8 @@ flowchart LR
   Draft ---> Stagnant;
   Review ---> Stagnant;
   Review ---> Withdrawn;
-  Accepted ---> EconomicImpact?
-  EconomicImpact?{Economic Impact?} -- No --> Implemented 
-  EconomicImpact? -- Yes --> CommunityVote((Community Vote))
-  CommunityVote -- Pass --> Implemented 
-  CommunityVote -- No Pass --> ReviseEconomics(Revise Economics)
-  ReviseEconomics -- Revised --> CommunityVote
-  ReviseEconomics ---> Withdrawn
-```  
-  
+```
+
 ### Idea
 
 At the idea stage, parties involved in the proposal are you -- the champion or
@@ -183,7 +158,8 @@ issue for tracking across clusters should also be created. While it is not
 *necessary* for the proposal author to also write the implementation, it is by
 far the most effective way to see a proposal through to completion: authors
 should not expect that other project developers will take on responsibility for
-implementing their accepted feature.
+implementing their accepted feature. Accepted proposals, such as those with 
+significant economic impact, can be subject to community / governance vote.
 
 ### Living
 
@@ -192,25 +168,15 @@ reach a state of finality. This includes most notably SIMD-1. This status must
 undergo extra scrutiny and review when updating the status from review to
 living.
 
-### CommunityVote
-
-Submit to Solana community to vote on SIMDs with significant economic impact
-
-### ReviseEconomics
-
-Revise economics based on the community vote results and feedback
-
-### Implemented
-
-Implement the SIMD by validator software implementors. Social consensus outside of the simd process must be met in order to go from Accepted to Implemented stage.
-
 ### Stagnant
 
-If a proposal reaches 6 months without activity, the proposal will be marked as stale to be closed. A new proposal can be opened if the proposal is
+If a proposal reaches 6 months without activity, the proposal will be
+marked as stale to be closed. A new proposal can be opened if the proposal is
 closed and has a chance of reaching consensus.
 
 ### Withdrawn
 
 The author has withdrawn the proposal. This state has finality and can no
-longer be resurrected. If the idea is pursued at a later date it is considered a new proposal.
-  
+longer be resurrected. If the idea is pursued at a later date it is considered
+a new proposal.
+
